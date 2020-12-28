@@ -9,7 +9,7 @@ const routineSpawner = {
         let standardRoleParts = [WORK, CARRY, MOVE];
         let transporterRoleParts = [CARRY, CARRY, MOVE];
 
-        for (var name in Memory.creeps) {
+        for (let name in Memory.creeps) {
             if (!Game.creeps[name]) {
                 delete Memory.creeps[name];
             }
