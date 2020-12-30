@@ -15,17 +15,18 @@ const routineSpawner = {
             }
         }
 
-        const harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-        doSpawnStandardRole(harvesters, 3, harvester, standardRoleParts);
 
         const builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
-        doSpawnStandardRole(builders, 1, builder, standardRoleParts);
+        doSpawnStandardRole(builders, 2, builder, standardRoleParts);
 
         const upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-        doSpawnStandardRole(upgraders, 1, upgrader, standardRoleParts);
+        doSpawnStandardRole(upgraders, 2, upgrader, standardRoleParts);
 
-        const transporters = _.filter(Game.creeps, (creep) => creep.memory.role == 'transporter');
-        doSpawnStandardRole(transporters, 2, transporter, transporterRoleParts);
+        const harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
+        doSpawnStandardRole(harvesters, 4, harvester, standardRoleParts);
+
+        // const transporters = _.filter(Game.creeps, (creep) => creep.memory.role == 'transporter');
+        // doSpawnStandardRole(transporters, 2, transporter, transporterRoleParts);
 
         if (Game.spawns['Spawn1'].spawning) {
             const spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
@@ -43,8 +44,14 @@ function doSpawnStandardRole(creepsPresent, max, roleName, roleParts) {
         const newName = roleName + "_" + Game.time;
         console.log('Spawning new: ' + roleName + " " + newName);
         Game.spawns['Spawn1'].spawnCreep(roleParts, newName,
-            {memory: {role: roleName}});
+            {memory: {role: roleName, sourceId: getSourceId(creepsPresent.length)}});
     }
+}
+
+function getSourceId(num){
+    const sourcesAry = Game.spawns['Spawn1'].room.find(FIND_SOURCES);
+    if (num <= 5)
+        return sourcesAry[0].id;
 }
 
 module.exports = routineSpawner;
