@@ -11,7 +11,7 @@ const roleHarvester = {
             }
             console.log(mySource);
             if (creep.harvest(sources[mySource]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
+                creep.moveTo(sources[mySource], {visualizePathStyle: {stroke: '#ffaa00'}});
             }
         } else {
             if (true) {
