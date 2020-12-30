@@ -17,10 +17,10 @@ const routineSpawner = {
 
 
         const builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
-        doSpawnStandardRole(builders, 2, builder, standardRoleParts);
+        doSpawnStandardRole(builders, 3, builder, standardRoleParts);
 
         const upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-        doSpawnStandardRole(upgraders, 2, upgrader, standardRoleParts);
+        doSpawnStandardRole(upgraders, 3, upgrader, standardRoleParts);
 
         const harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
         doSpawnStandardRole(harvesters, 15, harvester, standardRoleParts);
