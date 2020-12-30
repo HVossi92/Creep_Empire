@@ -42,7 +42,6 @@ const routineSpawner = {
 function doSpawnStandardRole(creepsPresent, max, roleName, roleParts) {
     if (creepsPresent.length < max) {
         const newName = roleName + "_" + Game.time;
-        console.log('Spawning new: ' + roleName + " " + newName);
         Game.spawns['Spawn1'].spawnCreep(roleParts, newName,
             {memory: {role: roleName, sourceId: getSourceId(creepsPresent.length)}});
     }
@@ -52,6 +51,12 @@ function getSourceId(num){
     const sourcesAry = Game.spawns['Spawn1'].room.find(FIND_SOURCES);
     if (num <= 5)
         return sourcesAry[0].id;
+    if (num <= 15)
+        return sourcesAry[1].id;
+    if (num <= 25)
+        return sourcesAry[2].id;
+    if (num <= 35)
+        return sourcesAry[3].id;
 }
 
 module.exports = routineSpawner;
