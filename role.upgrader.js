@@ -1,3 +1,5 @@
+const doHarvest = require('function.doHarvest');
+
 const roleUpgrader = {
 
     /** @param {Creep} creep **/
@@ -22,6 +24,8 @@ const roleUpgrader = {
                     creep.moveTo(Game.spawns.Spawn1);
                     creep.moveTo(Game.spawns.Spawn1, {visualizePathStyle: {stroke: '#ffaa00'}});
                 }
+            }else{
+                doHarvest.doHarvest(creep);
             }
         }
     }
