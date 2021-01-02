@@ -17,13 +17,13 @@ const routineSpawner = {
 
 
         const builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
-        doSpawnStandardRole(builders, 3, builder, standardRoleParts);
+        doSpawnStandardRole(builders, 10, builder, standardRoleParts);
 
         const upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-        doSpawnStandardRole(upgraders, 3, upgrader, standardRoleParts);
+        doSpawnStandardRole(upgraders, 2, upgrader, standardRoleParts);
 
         const harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-        doSpawnStandardRole(harvesters, 15, harvester, standardRoleParts);
+        doSpawnStandardRole(harvesters, 20, harvester, standardRoleParts);
 
         // const transporters = _.filter(Game.creeps, (creep) => creep.memory.role == 'transporter');
         // doSpawnStandardRole(transporters, 2, transporter, transporterRoleParts);
@@ -49,14 +49,14 @@ function doSpawnStandardRole(creepsPresent, max, roleName, roleParts) {
 
 function getSourceId(num){
     const sourcesAry = Game.spawns['Spawn1'].room.find(FIND_SOURCES);
-    if (num < 5)
+    if (num < 3)
         return sourcesAry[0].id;
-    if (num < 15)
+    if (num < 10)
         return sourcesAry[1].id;
-    if (num < 25)
-        return sourcesAry[2].id;
-    if (num < 35)
+    if (num < 20)
         return sourcesAry[3].id;
+    if (num < 30)
+        return sourcesAry[2].id;
 }
 
 module.exports = routineSpawner;

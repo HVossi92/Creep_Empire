@@ -1,4 +1,4 @@
-const doHarvest = require('function.doHarvest');
+const doHarvest = require('function.harvest');
 
 const roleUpgrader = {
 

@@ -1,5 +1,4 @@
-const doHarvest = require('function.doHarvest');
-
+const doHarvest = require('function.harvest');
 
 const roleBuilder = {
 
@@ -23,7 +22,7 @@ const roleBuilder = {
                 }
             }
         } else {
-            if (Game.spawns.Spawn1.energy > 300) {
+            if (Game.spawns.Spawn1.energy > 150) {
                 if (creep.withdraw(Game.spawns.Spawn1, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(Game.spawns.Spawn1);
                     creep.moveTo(Game.spawns.Spawn1, {visualizePathStyle: {stroke: '#ffaa00'}});

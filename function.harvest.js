@@ -1,4 +1,4 @@
-function doHarbest (creep) {
+function doHarvest (creep) {
     const sources = creep.room.find(FIND_SOURCES);
     let mySource = 0;
     for (let i = 0; i < sources.length; i++) {
@@ -10,4 +10,4 @@ function doHarbest (creep) {
     }
 }
 
-module.exports.doHarvest = doHarbest;
+module.exports.doHarvest = doHarvest;
