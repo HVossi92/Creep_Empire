@@ -6,20 +6,14 @@ const routineSpawner = require('routine.spawner');
 
 module.exports.loop = function () {
 
-    const tower = Game.getObjectById('7b6e37059253bd0b86df7257');
-    if (tower) {
-        const closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-            filter: (structure) => structure.hits < structure.hitsMax
-        });
-        if (closestDamagedStructure) {
-            tower.repair(closestDamagedStructure);
-        }
-
-        const closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-        if (closestHostile) {
-            tower.attack(closestHostile);
-        }
+    let rooms;
+    for (let i = 0; i < Game.rooms.length; i++) {
+        rooms[i] = Game.rooms[i];
     }
+    let tower;
+    if (rooms != undefined && rooms.length > 0)
+        towers = rooms.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
+
 
     routineSpawner.run();
 
