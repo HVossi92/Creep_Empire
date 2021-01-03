@@ -1,11 +1,13 @@
+const roles = require('global.roles');
+
 const routineSpawner = {
 
     /** @param {Creep} creep **/
     run: function () {
-        let harvester = 'harvester';
-        let builder = 'builder';
-        let upgrader = 'upgrader';
-        let transporter = 'transporter';
+        // let harvester = 'harvester';
+        // let builder = 'builder';
+        // let upgrader = 'upgrader';
+        // let transporter = 'transporter';
         let standardRoleParts = [WORK, CARRY, MOVE];
         let transporterRoleParts = [CARRY, CARRY, MOVE];
 
@@ -23,16 +25,16 @@ const routineSpawner = {
 
         switch (Game.spawns['Spawn1'].memory.spawnRotation) {
             case 0:
-                const harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-                doSpawnStandardRole(harvesters, 25, harvester, standardRoleParts);
+                const harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == roles.harvester);
+                doSpawnStandardRole(harvesters, 25, roles.harvester, standardRoleParts);
                 break;
             case 1:
-                const upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-                doSpawnStandardRole(upgraders, 4, upgrader, standardRoleParts);
+                const upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == roles.upgrader);
+                doSpawnStandardRole(upgraders, 4, roles.upgrader, standardRoleParts);
                 break;
             case 2:
-                const builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
-                doSpawnStandardRole(builders, 10, builder, standardRoleParts);
+                const builders = _.filter(Game.creeps, (creep) => creep.memory.role == roles.builder);
+                doSpawnStandardRole(builders, 10, roles.builder, standardRoleParts);
                 break;
             default:
                 Game.spawns['Spawn1'].memory.spawnRotation = 0;
