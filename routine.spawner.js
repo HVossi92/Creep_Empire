@@ -15,15 +15,28 @@ const routineSpawner = {
             }
         }
 
+        if (Game.spawns['Spawn1'].memory.spawnRotation == null || Game.spawns['Spawn1'].memory.spawnRotation == undefined)
+            Game.spawns['Spawn1'].memory.spawnRotation = 0;
 
-        const builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
-        doSpawnStandardRole(builders, 10, builder, standardRoleParts);
+        switch (Game.spawns['Spawn1'].memory.spawnRotation) {
+            case 0:
+                const harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
+                doSpawnStandardRole(harvesters, 20, harvester, standardRoleParts);
+                break;
+            case 1:
+                const upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
+                doSpawnStandardRole(upgraders, 4, upgrader, standardRoleParts);
+                break;
+            case 2:
+                const builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
+                doSpawnStandardRole(builders, 10, builder, standardRoleParts);
+                break;
+            default:
+                Game.spawns['Spawn1'].memory.spawnRotation = 0;
+                break;
+        }
+        Game.spawns['Spawn1'].memory.spawnRotation++;
 
-        const upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-        doSpawnStandardRole(upgraders, 2, upgrader, standardRoleParts);
-
-        const harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-        doSpawnStandardRole(harvesters, 20, harvester, standardRoleParts);
 
         // const transporters = _.filter(Game.creeps, (creep) => creep.memory.role == 'transporter');
         // doSpawnStandardRole(transporters, 2, transporter, transporterRoleParts);
@@ -47,7 +60,7 @@ function doSpawnStandardRole(creepsPresent, max, roleName, roleParts) {
     }
 }
 
-function getSourceId(num){
+function getSourceId(num) {
     const sourcesAry = Game.spawns['Spawn1'].room.find(FIND_SOURCES);
     if (num < 3)
         return sourcesAry[0].id;

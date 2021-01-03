@@ -3,6 +3,7 @@ const roleUpgrader = require('role.upgrader');
 const roleBuilder = require('role.builder');
 const roleTransporter = require('role.transporter');
 const routineSpawner = require('routine.spawner');
+const structureTower = require('structure.tower');
 
 module.exports.loop = function () {
 
@@ -10,11 +11,11 @@ module.exports.loop = function () {
     for (let i = 0; i < Game.rooms.length; i++) {
         rooms[i] = Game.rooms[i];
     }
-    let tower;
-    if (rooms != undefined && rooms.length > 0)
-        towers = rooms.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
 
-
+    if (rooms != undefined && rooms.length > 0) {
+        const towers = rooms.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
+        towers.forEach(e => structureTower.run(e));
+    }
     routineSpawner.run();
 
     for (let name in Game.creeps) {
