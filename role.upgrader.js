@@ -1,10 +1,16 @@
 const doHarvest = require('function.harvest');
 const doMove = require('function.move');
+const changeRole = require('change.role');
+const roles = require('global.roles');
 
 const roleUpgrader = {
 
     /** @param {Creep} creep **/
     run: function (creep) {
+        if (_.filter(Game.creeps, (creep) => creep.memory.role == roles.harvester).length < 5) {
+            changeRole.run(creep, roles.harvester);
+            return;
+        }
 
         if (creep.memory.upgrading && creep.store[RESOURCE_ENERGY] == 0) {
             creep.memory.upgrading = false;
@@ -24,7 +30,7 @@ const roleUpgrader = {
                 if (creep.withdraw(Game.spawns.Spawn1, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     doMove.doMove(creep, Game.spawns.Spawn1);
                 }
-            }else{
+            } else {
                 doHarvest.doHarvest(creep);
             }
         }

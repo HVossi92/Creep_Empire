@@ -4,10 +4,6 @@ const routineSpawner = {
 
     /** @param {Creep} creep **/
     run: function () {
-        // let harvester = 'harvester';
-        // let builder = 'builder';
-        // let upgrader = 'upgrader';
-        // let transporter = 'transporter';
         let standardRoleParts = [WORK, CARRY, MOVE];
         let transporterRoleParts = [CARRY, CARRY, MOVE];
 
@@ -20,7 +16,7 @@ const routineSpawner = {
         if (Game.spawns['Spawn1'].memory.spawnRotation == null || Game.spawns['Spawn1'].memory.spawnRotation == undefined)
             Game.spawns['Spawn1'].memory.spawnRotation = 0;
 
-        if(_.filter(Game.creeps, (creep) => creep.memory.role == 'harvester').length < 5)
+        if(_.filter(Game.creeps, (creep) => creep.memory.role == roles.harvester).length < 5)
             Game.spawns['Spawn1'].memory.spawnRotation = 0;
 
         switch (Game.spawns['Spawn1'].memory.spawnRotation) {
