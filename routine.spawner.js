@@ -18,10 +18,13 @@ const routineSpawner = {
         if (Game.spawns['Spawn1'].memory.spawnRotation == null || Game.spawns['Spawn1'].memory.spawnRotation == undefined)
             Game.spawns['Spawn1'].memory.spawnRotation = 0;
 
+        if(_.filter(Game.creeps, (creep) => creep.memory.role == 'harvester').length < 5)
+            Game.spawns['Spawn1'].memory.spawnRotation = 0;
+
         switch (Game.spawns['Spawn1'].memory.spawnRotation) {
             case 0:
                 const harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-                doSpawnStandardRole(harvesters, 20, harvester, standardRoleParts);
+                doSpawnStandardRole(harvesters, 25, harvester, standardRoleParts);
                 break;
             case 1:
                 const upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
@@ -56,7 +59,7 @@ function doSpawnStandardRole(creepsPresent, max, roleName, roleParts) {
     if (creepsPresent.length < max) {
         const newName = roleName + "_" + Game.time;
         Game.spawns['Spawn1'].spawnCreep(roleParts, newName,
-            {memory: {role: roleName, sourceId: getSourceId(creepsPresent.length)}});
+            {memory: {role: roleName, sourceId: getSourceId(creepsPresent.length), lastPos: [0 , 0]}});
     }
 }
 

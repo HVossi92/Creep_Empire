@@ -1,4 +1,5 @@
 const doHarvest = require('function.harvest');
+const doMove = require('function.move');
 
 const roleBuilder = {
 
@@ -18,14 +19,13 @@ const roleBuilder = {
             const targets = creep.room.find(FIND_CONSTRUCTION_SITES);
             if (targets.length) {
                 if (creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+                    doMove.doMove(creep, targets[0]);
                 }
             }
         } else {
-            if (Game.spawns.Spawn1.energy > 150) {
+            if (Game.spawns.Spawn1.energy > 250) {
                 if (creep.withdraw(Game.spawns.Spawn1, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(Game.spawns.Spawn1);
-                    creep.moveTo(Game.spawns.Spawn1, {visualizePathStyle: {stroke: '#ffaa00'}});
+                    doMove.doMove(creep, Game.spawns.Spawn1);
                 }
             } else {
                 doHarvest.doHarvest(creep);

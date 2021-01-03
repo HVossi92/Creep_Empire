@@ -1,4 +1,5 @@
 const doHarvest = require('function.harvest');
+const doMove = require('function.move');
 
 const roleHarvester = {
     /** @param {Creep} creep **/
@@ -17,11 +18,11 @@ const roleHarvester = {
                 });
                 if (targets.length > 0) {
                     if (creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+                        doMove.doMove(creep, targets[0]);
                     }
                 }
                 else{
-                    creep.moveTo(Game.spawns['Spawn1'], {visualizePathStyle: {stroke: '#ffffff'}});
+                    doMove.doMove(creep, Game.spawns['Spawn1']);
                 }
             } else {
                 creep.drop(RESOURCE_ENERGY);
