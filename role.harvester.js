@@ -1,5 +1,6 @@
 const doHarvest = require('function.harvest');
 const doMove = require('function.move');
+const roles = require('global.roles');
 
 const roleHarvester = {
     /** @param {Creep} creep **/
@@ -7,7 +8,7 @@ const roleHarvester = {
         if (creep.store.getFreeCapacity() > 0) {
             doHarvest.doHarvest(creep);
         } else {
-            if (true) {
+            if (_.filter(Game.creeps, (creep) => creep.memory.role == roles.transporter).length < 5) {
                 const targets = creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_EXTENSION ||

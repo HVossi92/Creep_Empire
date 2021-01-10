@@ -22,7 +22,7 @@ const routineSpawner = {
         switch (Game.spawns['Spawn1'].memory.spawnRotation) {
             case 0:
                 const harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == roles.harvester);
-                doSpawnStandardRole(harvesters, 25, roles.harvester, standardRoleParts);
+                doSpawnStandardRole(harvesters, 15, roles.harvester, standardRoleParts);
                 break;
             case 1:
                 const upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == roles.upgrader);
@@ -30,7 +30,13 @@ const routineSpawner = {
                 break;
             case 2:
                 const builders = _.filter(Game.creeps, (creep) => creep.memory.role == roles.builder);
-                doSpawnStandardRole(builders, 10, roles.builder, standardRoleParts);
+                doSpawnStandardRole(builders, 10, roles.builder, transporterRoleParts);
+                break;
+            case 3:
+                if (_.filter(Game.creeps, (creep) => creep.memory.role == roles.harvester).length < 20)
+                    break;
+                const transporters = _.filter(Game.creeps, (creep) => creep.memory.role == roles.transporter);
+                doSpawnStandardRole(transporters, 12, roles.transporter, standardRoleParts);
                 break;
             default:
                 Game.spawns['Spawn1'].memory.spawnRotation = 0;
