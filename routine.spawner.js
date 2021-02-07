@@ -63,7 +63,10 @@ function doSpawnStandardRole(creepsPresent, max, roleName, roleParts) {
     if (creepsPresent.length < max) {
         const newName = roleName + "_" + Game.time;
         Game.spawns['Spawn1'].spawnCreep(roleParts, newName,
-            {memory: {role: roleName, sourceId: getSourceId(creepsPresent.length), lastPos: [0 , 0]}});
+            {memory: {role: roleName,
+                    sourceId: getSourceId(creepsPresent.length),
+                    lastPos: [0 , 0],
+                    building: false}});
     }
 }
 
