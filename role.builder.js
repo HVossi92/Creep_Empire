@@ -23,6 +23,7 @@ const roleBuilder = {
             }
         } else {
             if (Game.spawns.Spawn1.energy > 250) {
+                console.log(Game.spawns.Spawn1.energy);
                 if (creep.withdraw(Game.spawns.Spawn1, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     doMove.doMove(creep, Game.spawns.Spawn1);
                 }
