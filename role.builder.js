@@ -17,13 +17,13 @@ const roleBuilder = {
         if (creep.memory.building) {
             const targets = creep.room.find(FIND_CONSTRUCTION_SITES);
             if (targets.length) {
-                if (creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
+                if (creep.build(targets[0]) === ERR_NOT_IN_RANGE) {
                     doMove.doMove(creep, targets[0]);
                 }
             }
         } else {
             if (Game.spawns.Spawn1.energy > 250) {
-                if (creep.withdraw(Game.spawns.Spawn1, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                if (creep.withdraw(Game.spawns.Spawn1, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
                     doMove.doMove(creep, Game.spawns.Spawn1);
                 }
             } else {

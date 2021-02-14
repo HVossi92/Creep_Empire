@@ -30,7 +30,7 @@ const routineSpawner = {
                 break;
             case 2:
                 const builders = _.filter(Game.creeps, (creep) => creep.memory.role == roles.builder);
-                doSpawnStandardRole(builders, 10, roles.builder, transporterRoleParts);
+                doSpawnStandardRole(builders, 1, roles.builder, transporterRoleParts);
                 break;
             case 3:
                 if (_.filter(Game.creeps, (creep) => creep.memory.role == roles.harvester).length < 20)
